@@ -16,7 +16,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Produces;
 import data.*;
 
-
+// REST endpoints
 
 @Path("/lego")
 public class LegoService {
@@ -105,7 +105,7 @@ public class LegoService {
 	@Path("/minspeed")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String minSpeed() {-
+	public String minSpeed() {
 	EntityManager em = emf.createEntityManager();
 	Query q = em.createQuery("select min(l.speed) from Lego l");
 	return q.getSingleResult().toString();
