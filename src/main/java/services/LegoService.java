@@ -72,5 +72,42 @@ public class LegoService {
 
     return lego;
 }
+	@Path("/count")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String count() {
 
+    EntityManager em = emf.createEntityManager();
+
+    Query q = em.createQuery("select count(l) from Lego l");
+
+    return q.getSingleResult().toString();
+}
+	@Path("/averagespeed")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String averageSpeed() {
+
+    EntityManager em = emf.createEntityManager();
+
+    Query q = em.createQuery("select avg(l.speed) from Lego l");
+
+    return q.getSingleResult().toString();
+}
+	@Path("/maxspeed")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String maxSpeed() {
+    EntityManager em = emf.createEntityManager();
+    Query q = em.createQuery("select max(l.speed) from Lego l");
+    return q.getSingleResult().toString();
+}
+	@Path("/minspeed")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	public String minSpeed() {-
+	EntityManager em = emf.createEntityManager();
+	Query q = em.createQuery("select min(l.speed) from Lego l");
+	return q.getSingleResult().toString();
+	}
 }

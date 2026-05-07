@@ -68,12 +68,25 @@
 	<input type='button' name='right' value='Right' onclick='turnRight(this.form);'>
 	<input type='button' name='stop' value='STOP' onclick='stoplego(this.form);'>
 	<input type='button' name='start' value='START' onclick='startlego(this.form);'>
-	<input type='button' name='run' value='run' onclick='startlego(this.form);'>
+	<p id="currentsettings"></p>
 
-	<!-- <input type='button' name='ok' value='OK' onclick='sendData(this.form);'> -->
-	</form>
 	<p id='settings'>
 	</p>
 	<p id="setvalues">...end...</p>
+	<!-- <input type='button' name='ok' value='OK' onclick='sendData(this.form);'> -->
+	</form>
+	<div>
+		<h3>Statistics</h3>
+
+		<a href="/rest/lego/count" target="statsFrame">Total records</a><br>
+		<a href="/rest/lego/averagespeed" target="statsFrame">Average speed</a><br>
+		<a href="/rest/lego/maxspeed" target="statsFrame">Maximum speed</a><br>
+		<a href="/rest/lego/minspeed" target="statsFrame">Minimum speed</a><br>
+
+		<iframe name="statsFrame" style="border:1px solid black; width:300px; height:80px;"></iframe>
+	</div>
+	
+
+
   </body>
 </html>
