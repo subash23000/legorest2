@@ -8,6 +8,7 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -53,4 +54,23 @@ public class LegoService {
 		Lego lego=list.get(0);
 		return lego.getId()+"#"+lego.getRun()+"#"+lego.getSpeed()+"#"+lego.getTurn();
 	}
+	@Path("/setvalues/{run}/{speed}/{turn}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Lego setValuesFromRobot(@PathParam("run") int run,
+    @PathParam("speed") int speed, @PathParam("turn") int turn) {
+
+    Lego lego = new Lego();
+    lego.setRun(run);
+    lego.setSpeed(speed);
+    lego.setTurn(turn);
+
+    EntityManager em = emf.createEntityManager();
+    em.getTransaction().begin();
+    em.persist(lego);
+    em.getTransaction().commit();
+
+    return lego;
+}
+
 }
