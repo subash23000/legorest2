@@ -18,6 +18,8 @@ import data.*;
 
 // REST endpoints
 
+// this is the REST api server for the lego robot system, it receives robot data, stores it in the database and provides endpoints to retrieve statistics and current values.
+// here, ReadData and SendData connmunicates with this server.
 @Path("/lego")
 public class LegoService {
 	EntityManagerFactory emf=Persistence.createEntityManagerFactory("lego");	
@@ -54,6 +56,8 @@ public class LegoService {
 		Lego lego=list.get(0);
 		return lego.getId()+"#"+lego.getRun()+"#"+lego.getSpeed()+"#"+lego.getTurn();
 	}
+
+	// robot snds values
 	@Path("/setvalues/{run}/{speed}/{turn}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -72,6 +76,8 @@ public class LegoService {
 
     return lego;
 }
+
+// returns how many records exist in the database
 	@Path("/count")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -83,6 +89,9 @@ public class LegoService {
 
     return q.getSingleResult().toString();
 }
+
+
+// returns the average speed of all records in the database
 	@Path("/averagespeed")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -94,6 +103,8 @@ public class LegoService {
 
     return q.getSingleResult().toString();
 }
+
+// returns highest recorded speed
 	@Path("/maxspeed")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -102,6 +113,8 @@ public class LegoService {
     Query q = em.createQuery("select max(l.speed) from Lego l");
     return q.getSingleResult().toString();
 }
+
+// returns lowest recorded speed
 	@Path("/minspeed")
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
