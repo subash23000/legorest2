@@ -23,3 +23,9 @@ function showAverage() {
         "Error fetching average speed: ";
     });
 }
+
+document.getElementById("settings").innerHTML=
+"ID="+settings.id+" Run="+settings.run+" Speed="+settings.speed+" Turn="+settings.turn;
+
+document.getElementById("currentsettings").innerHTML =
+JSON.stringify(settings);
